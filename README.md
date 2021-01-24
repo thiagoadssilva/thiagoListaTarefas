@@ -2,7 +2,7 @@
 * Projeto em Reactjs, onde vou está aplicando todos os conceitos aprendidos no curso da udemy 'https://www.udemy.com/course/aprenda-react-hooks-8-projetos-praticos/', com algumas modificações e usando uma API que nesse momento vai está salvando as tarefas em memoria.
 
 * Dentro do <b>README</b> da pasta do projeto está tudo que está sendo usando.
-   * https://github.com/thiagoadssilva/udemyListaTarefas/blob/main/frontend/README.md
+   * https://github.com/thiagoadssilva/thiagoListaTarefas/blob/main/frontend/README.md
 
 <hr>
 
