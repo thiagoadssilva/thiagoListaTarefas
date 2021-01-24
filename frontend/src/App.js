@@ -1,20 +1,20 @@
 import React from 'react';
-import {useRouter} from 'hookrouter';
+import {useRoutes} from 'hookrouter';
 
 import HomeScreen from './components/HomeScreen';
-import ListTask from './components/ListTask';
-import RegisterTask from './components/RegisterTask';
-import UpdateTask from './components/UpdateTask';
+// import ListTask from './components/ListTask';
+// import RegisterTask from './components/RegisterTask';
+// import UpdateTask from './components/UpdateTask';
 
 const routes = {
-  '/': () => <HomeScreen />,
-  '/listTask': () => <ListTask />,
-  '/registerTask': () => <RegisterTask />,
-  '/updateTask': () => <UpdateTask />
+  '/': () => <HomeScreen />
+  // '/listTask': () => <ListTask />,
+  // '/registerTask': () => <RegisterTask />,
+  // '/updateTask/:id': ({id}) => <UpdateTask id={id}/>
 }
 
 function App() {
-  return useRouter(routes);
+  return (useRoutes(routes));
 }
 
 export default App;
