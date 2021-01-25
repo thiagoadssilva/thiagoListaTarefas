@@ -2,8 +2,7 @@ import React from 'react';
 import CompleteTask from '../CompleteTask';
 import RemoveTask from '../RemoveTask';
 
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faEdit } from '@fortawesome/free-solid-svg-icons';
+import imageUpdate from '../../image/editar.png';
 import { A } from 'hookrouter';
 
 import {
@@ -26,13 +25,13 @@ export default (props) => {
           <td width='80%' style={{ textDecoration: completed(item) }}>
             {item.nome}
           </td>
-          <td width='10%'>
+          <td style={{display: 'flex', justifyContent: 'center'}}>
             {item.concluida === false &&
               <A href={"/updateTask" + item.id}>
-                <FontAwesomeIcon icon={faEdit} />
+                <img src={imageUpdate} style={{ width: '30px', height: '30px', cursor: 'pointer' }} />
               </A>
             }
-            <RemoveTask  taskComplete={item} loadTask={props.loadTask}/>
+            <RemoveTask taskComplete={item} loadTask={props.loadTask} />
           </td>
         </tr>
       )}

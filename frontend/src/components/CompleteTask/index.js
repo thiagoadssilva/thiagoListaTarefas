@@ -1,9 +1,7 @@
 import React, { useState } from 'react';
 import { Modal, Button } from 'react-bootstrap';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faClipboardCheck } from '@fortawesome/free-solid-svg-icons';
 import axios from 'axios';
-import imagee from '../../image/concluir.svg';
+import imageIconCheck from '../../image/concluir.svg';
 
 import {
   Container
@@ -43,9 +41,8 @@ export default (props) => {
 
   return (
     <Container className={props.taskComplete.concluida}>
-      <Button className="btn-sm" onClick={handleOpenModal}>
-        <FontAwesomeIcon  icon={faClipboardCheck}/>
-      </Button>
+
+      <img src={imageIconCheck} style={{width: '30px', height: '30px', cursor: 'pointer'} } onClick={handleOpenModal}/>
 
       <Modal show={displayModal} onHide={handleCloseModal}>
         <Modal.Header closeButton>
@@ -61,7 +58,21 @@ export default (props) => {
             Sim
           </Button>
           <Button variant="light" onClick={handleCloseModal}> 
-            Sim
+            Não
+          </Button>
+        </Modal.Footer>
+      </Modal>
+
+      <Modal show={displayModalErro} onHide={handleCloseModalErro}>
+        <Modal.Header closeButton>
+          <Modal.Title>Erro</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          Erro ao concluir a tarefa, por favor tente novamente!
+        </Modal.Body>
+        <Modal.Footer>
+          <Button variant="warning" onClick={handleCloseModalErro}>
+            Fechar
           </Button>
         </Modal.Footer>
       </Modal>
