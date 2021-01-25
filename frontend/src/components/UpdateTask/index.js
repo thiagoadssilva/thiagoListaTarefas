@@ -4,10 +4,10 @@ import {
     Container
 } from './styled';
 
-export default () => {
+export default () =>{
     return(
         <Container>
-            Thiago jose da silva
+            
         </Container>
     );
 }
