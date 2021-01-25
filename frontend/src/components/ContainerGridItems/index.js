@@ -31,7 +31,7 @@ export default (props) => {
                 <img src={imageUpdate} style={{ width: '30px', height: '30px', cursor: 'pointer' }} />
               </A>
             }
-            <RemoveTask taskComplete={item} loadTask={props.loadTask} />
+            <RemoveTask taskRemove={item} loadTask={props.loadTask} />
           </td>
         </tr>
       )}

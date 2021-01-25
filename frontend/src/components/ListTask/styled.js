@@ -28,12 +28,11 @@ export const  ContainerGridTask  = styled.div`
   margin: 15px;
   flex: 1;
   background-color: #2EA2A7;
-  border-radius: 10px;
 `;
 
 export const HeaderTitle = styled.label`
   flex: 1;
-  font-weight: bold;
-  font-size: 40px;
+  font-size: 30px;
   margin: 15px;
+  font-weight: bold;
 `;

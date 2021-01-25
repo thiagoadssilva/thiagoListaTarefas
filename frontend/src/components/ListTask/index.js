@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faTimes, faSearch, faPlusCircle } from '@fortawesome/free-solid-svg-icons';
+import { faTimes } from '@fortawesome/free-solid-svg-icons';
 import { A } from 'hookrouter';
 import { Table, Form, Button } from 'react-bootstrap';
 import ContainerGridItems from '../ContainerGridItems';
 import axios from 'axios';
+import iconPlus from '../../image/plus.png';
+import iconSearch from '../../image/pesquiser.png';
 
 import {
     Container,
@@ -44,23 +46,23 @@ export default () => {
             <ContainerHeader>
                 <HeaderTitle>Lista de Tarefas</HeaderTitle>
                 <A href="/">
-                    <FontAwesomeIcon icon={faTimes} style={{ margin: '15px', fontSize: '40px', textDecoration: 'none', color: '#000000' }} />
+                    <FontAwesomeIcon icon={faTimes} style={{ margin: '15px', fontSize: '30px', textDecoration: 'none', color: '#000000' }} />
                 </A>
             </ContainerHeader>
 
             <ContainerSearchRegister>
-                <FontAwesomeIcon icon={faSearch} style={{ fontSize: '40px', paddingLeft: '15px' }} />
+                <img  src={iconSearch} style={{ width: '30px', height: '30px', marginLeft: '15px' }}/>
                 <Form.Control type="text" placeholder="Procure sua tarefa" style={{ margin: '15px', backgroundColor: '#EBF1C5' }} />
                 <Button variant="success" style={{ color: '#000000', margin: '15px', borderRadius: '10px', display: 'flex', alignItems: 'center' }}>
                     Adicionar
-                    <FontAwesomeIcon icon={faPlusCircle} style={{ fontSize: '30px', paddingLeft: '15px' }} />
+                    <img src={iconPlus} style={{ width: '30px', height: '30px', marginLeft: '15px' }}/>
                 </Button>
             </ContainerSearchRegister>
 
             <ContainerGridTask>
                 <Table striped bordered hover responsive>
                     <thead>
-                        <tr>
+                        <tr style={{textAlign: 'center'}}>
                             <th>Concluir</th>
                             <th>Nome da Tarefa</th>
                             <th>Ações</th>
