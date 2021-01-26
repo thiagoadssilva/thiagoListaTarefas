@@ -19,6 +19,7 @@ export const  ContainerHeader = styled.div`
 export const  ContainerSearchRegister = styled.div`
   display: flex;
   align-items: center;
+  justify-content: center;
   height: 60px; 
   margin: 15px;
   background-color: #2EA2A7;

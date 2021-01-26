@@ -2,11 +2,11 @@ import React, { useEffect, useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTimes } from '@fortawesome/free-solid-svg-icons';
 import { A } from 'hookrouter';
-import { Table, Form, Button } from 'react-bootstrap';
+import { Table, Form} from 'react-bootstrap';
 import ContainerGridItems from '../ContainerGridItems';
 import axios from 'axios';
-import iconPlus from '../../image/plus.png';
 import iconSearch from '../../image/pesquiser.png';
+import RegisterTask from '../RegisterTask';
 
 import {
     Container,
@@ -19,6 +19,7 @@ import {
 export default () => {
     const [tasks, setTasks] = useState([]);
     const [loadTask, setLoadTask] = useState(true);
+    const [openModal, setOpenModal] = useState(false);
 
     //- Contante que vai ter o link para listar todoas as tarefas através da api  
     const API_URL_LIST_TASK = "http://localhost:3002/gerenciador-tarefas";
@@ -40,7 +41,6 @@ export default () => {
         }
     }, [loadTask]);
 
-
     return (
         <Container>
             <ContainerHeader>
@@ -51,26 +51,26 @@ export default () => {
             </ContainerHeader>
 
             <ContainerSearchRegister>
-                <img  src={iconSearch} style={{ width: '30px', height: '30px', marginLeft: '15px' }}/>
-                <Form.Control type="text" placeholder="Procure sua tarefa" style={{ margin: '15px', backgroundColor: '#EBF1C5' }} />
-                <Button variant="success" style={{ color: '#000000', margin: '15px', borderRadius: '10px', display: 'flex', alignItems: 'center' }}>
-                    Adicionar
-                    <img src={iconPlus} style={{ width: '30px', height: '30px', marginLeft: '15px' }}/>
-                </Button>
+                <img src={iconSearch} style={{ width: '30px', height: '30px', margin: '15px', marginRight: '5px' }} />
+                <Form.Control type="text" placeholder="Procure sua tarefa" style={{ margin: '10px', backgroundColor: '#EBF1C5' }} />
+                <RegisterTask openModal={openModal} loadTask={loadTask}/>
             </ContainerSearchRegister>
+            
 
             <ContainerGridTask>
                 <Table striped bordered hover responsive>
                     <thead>
-                        <tr style={{textAlign: 'center'}}>
+                        <tr style={{ textAlign: 'center' }}>
                             <th>Concluir</th>
                             <th>Nome da Tarefa</th>
                             <th>Ações</th>
                         </tr>
                     </thead>
                     <ContainerGridItems tasks={tasks} loadTask={setLoadTask} />
-                </Table>
+                </Table>                
             </ContainerGridTask>
+
+            
         </Container>
     );
 }

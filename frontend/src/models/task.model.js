@@ -1,12 +1,12 @@
-function Task(id, name, concluded){
+function Task(id, nome, concluida){
     this.id = id;
-    this.name = name;
-    this.concluded = concluded;
-    
-    return{
+    this.nome = nome;
+    this.concluida = concluida;
+
+    return {
         id: id,
-        name: name,
-        concluded: concluded
+        nome: nome,
+        concluida: concluida
     };
 }
 
