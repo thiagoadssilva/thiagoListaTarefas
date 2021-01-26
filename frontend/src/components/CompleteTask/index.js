@@ -65,14 +65,14 @@ export default (props) => {
 
       <Modal show={displayModalErro} onHide={handleCloseModalErro}>
         <Modal.Header closeButton>
-          <Modal.Title>Erro</Modal.Title>
+          <Modal.Title>Erro de conexão</Modal.Title>
         </Modal.Header>
         <Modal.Body>
           Erro ao concluir a tarefa, por favor tente novamente!
         </Modal.Body>
         <Modal.Footer>
           <Button variant="warning" onClick={handleCloseModalErro}>
-            Fechar
+            Continuar
           </Button>
         </Modal.Footer>
       </Modal>

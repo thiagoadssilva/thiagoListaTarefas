@@ -24,7 +24,8 @@ export default (props) => {
         const newTask = new Task(null, registerTask, false);
         await axios.post(API_URL_REGISTER_TASK, newTask);
         handleCloseModal();
-        props.loadTask(true);
+        props.loadTask(true);        
+        setRegisterTask('');
       } catch (error) {
         setDisplayModalErro(true);
         setDisplayModal(false);
@@ -81,6 +82,21 @@ export default (props) => {
           </Form.Group>
         </Modal.Footer>
       </Modal>
+
+      <Modal show={displayModalErro} onHide={handleCloseModalErro}>
+        <Modal.Header closeButton>
+          <Modal.Title>Erro de conexão</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          Erro ao cadastrar, por favor tente novamente!
+        </Modal.Body>
+        <Modal.Footer>
+          <Button variant="danger" onClick={handleCloseModalErro}>
+            Continuar
+          </Button>
+        </Modal.Footer>
+      </Modal>
+      
     </Container>
   );
 }

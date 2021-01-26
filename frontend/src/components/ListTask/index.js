@@ -34,7 +34,7 @@ export default () => {
                 setTasks([]);
             }
         }
-
+        console.log(loadTask);
         if (loadTask) {
             getTask();
             setLoadTask(false);
@@ -53,7 +53,7 @@ export default () => {
             <ContainerSearchRegister>
                 <img src={iconSearch} style={{ width: '30px', height: '30px', margin: '15px', marginRight: '5px' }} />
                 <Form.Control type="text" placeholder="Procure sua tarefa" style={{ margin: '10px', backgroundColor: '#EBF1C5' }} />
-                <RegisterTask openModal={openModal} loadTask={loadTask}/>
+                <RegisterTask openModal={openModal} loadTask={setLoadTask}/>
             </ContainerSearchRegister>
             
 
