@@ -20,6 +20,7 @@ export default () => {
     const [tasks, setTasks] = useState([]);
     const [loadTask, setLoadTask] = useState(true);
     const [openModal, setOpenModal] = useState(false);
+    const [filterTask, setFilterTask] = useState('');
 
     //- Contante que vai ter o link para listar todoas as tarefas através da api  
     const API_URL_LIST_TASK = "http://localhost:3002/gerenciador-tarefas";
@@ -28,7 +29,8 @@ export default () => {
     useEffect(() => {
         async function getTask() {
             try {
-                let { data } = await axios.get(API_URL_LIST_TASK);
+                const param = `?filtro-tarefa=${filterTask}`;
+                let { data } = await axios.get(API_URL_LIST_TASK + param);
                 setTasks(data.tarefas);
             } catch (error) {
                 setTasks([]);
@@ -39,7 +41,12 @@ export default () => {
             getTask();
             setLoadTask(false);
         }
-    }, [loadTask]);
+    }, [loadTask, filterTask]);
+
+    function handleFilterTask(event){
+        setFilterTask(event.target.value);
+        setLoadTask(true);
+    }
 
     return (
         <Container>
@@ -52,7 +59,7 @@ export default () => {
 
             <ContainerSearchRegister>
                 <img src={iconSearch} style={{ width: '30px', height: '30px', margin: '15px', marginRight: '5px' }} />
-                <Form.Control type="text" placeholder="Procure sua tarefa" style={{ margin: '10px', backgroundColor: '#EBF1C5' }} />
+                <Form.Control type="text" placeholder="Procure sua tarefa" style={{ margin: '10px', backgroundColor: '#EBF1C5' }} onChange={handleFilterTask} value={filterTask}/>
                 <RegisterTask openModal={openModal} loadTask={setLoadTask}/>
             </ContainerSearchRegister>
             
