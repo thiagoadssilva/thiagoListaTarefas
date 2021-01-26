@@ -16,7 +16,7 @@ export default (props) => {
   const [displayModal, setDisplayModal] = useState(false);
   const [displayModalErro, setDisplayModalErro] = useState(false);
 
-  async function register(event) {
+  async function handleRegister(event) {
     event.preventDefault();
 
     if (event.currentTarget.checkValidity() === true) {
@@ -72,7 +72,7 @@ export default (props) => {
 
         <Modal.Footer>
           <Form.Group>
-            <Button variant="success" className=" btn btn-success btn-sm" onClick={register} >
+            <Button variant="success" className=" btn btn-success btn-sm" onClick={handleRegister} >
               Adicionar
             </Button>
             &nbsp;

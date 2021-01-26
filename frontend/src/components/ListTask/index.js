@@ -34,7 +34,7 @@ export default () => {
                 setTasks([]);
             }
         }
-        console.log(loadTask);
+
         if (loadTask) {
             getTask();
             setLoadTask(false);
