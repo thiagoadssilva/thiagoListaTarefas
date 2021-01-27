@@ -37,3 +37,10 @@ export const HeaderTitle = styled.label`
   margin: 15px;
   font-weight: bold;
 `;
+
+export const ContainerPagination = styled.div`
+  background-color: #2EA2A7;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;

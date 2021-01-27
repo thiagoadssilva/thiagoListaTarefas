@@ -7,14 +7,16 @@ import ContainerGridItems from '../ContainerGridItems';
 import axios from 'axios';
 import iconSearch from '../../image/pesquiser.png';
 import RegisterTask from '../RegisterTask';
-import Ordanation from '../Ordination'
+import Ordanation from '../Ordination';
+import Pagination from '../Pagination';
 
 import {
     Container,
     ContainerHeader,
     ContainerSearchRegister,
     ContainerGridTask,
-    HeaderTitle
+    HeaderTitle,
+    ContainerPagination
 } from './styled';
 
 export default () => {
@@ -24,7 +26,10 @@ export default () => {
     const [filterTask, setFilterTask] = useState('');
     const [ordinationDesc, setOrdinationDesc] = useState(false);
     const [ordinationAsc, setOrdinationAsc] = useState(false);
+    const [totalItems, setTotalItem] = useState(0);
+    const [pageCurrent, setPageCurrent] = useState(1);
 
+    const ITEM_FOR_PAGE = 5;
     //- Contante que vai ter o link para listar todoas as tarefas através da api  
     const API_URL_LIST_TASK = "http://localhost:3002/gerenciador-tarefas";
 
@@ -41,8 +46,9 @@ export default () => {
             }
 
             try {
-                const param = `?filtro-tarefa=${filterTask}&ordem=${order}`;
+                const param = `?pag=${pageCurrent}&filtro-tarefa=${filterTask}&ordem=${order}&itens-por-pagina=${ITEM_FOR_PAGE}`;
                 let { data } = await axios.get(API_URL_LIST_TASK + param);
+                setTotalItem(data.totalItens);
                 setTasks(data.tarefas);
             } catch (error) {
                 setTasks([]);
@@ -53,7 +59,7 @@ export default () => {
             getTask();
             setLoadTask(false);
         }
-    }, [loadTask, filterTask]);
+    }, [loadTask, filterTask, pageCurrent, ordinationDesc, ordinationAsc]);
 
     function handleFilterTask(event) {
         setFilterTask(event.target.value);
@@ -76,7 +82,10 @@ export default () => {
         setLoadTask(true);
     }
 
-
+    function handleChancePage(page) {
+        setPageCurrent(page);
+        setLoadTask(true);
+    }
 
     return (
         <Container>
@@ -107,6 +116,9 @@ export default () => {
                 </Table>
             </ContainerGridTask>
 
+            <ContainerPagination>
+                <Pagination totalItems={totalItems} itemsForPage={ITEM_FOR_PAGE} pageCurrent={pageCurrent} changePage={handleChancePage}/>
+            </ContainerPagination>
 
         </Container>
     );
