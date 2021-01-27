@@ -21,3 +21,10 @@
 ![Tela Principal](images/homeScreen.png)
 
 <hr>
+
+
+## <b>Tela de Inicio</b> 
+
+![Tela Principal](images/lista.png)
+
+<hr>
