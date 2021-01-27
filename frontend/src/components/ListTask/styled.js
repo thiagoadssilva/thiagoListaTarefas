@@ -39,6 +39,7 @@ export const HeaderTitle = styled.label`
 `;
 
 export const ContainerPagination = styled.div`
+  padding-top: 5px;
   background-color: #2EA2A7;
   display: flex;
   justify-content: center;

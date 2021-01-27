@@ -15,13 +15,13 @@ export default (props) => {
 
   function generatePreviousItem() {
     return (
-      <Pagination.Prev key="pagPrev" onClick={() => props.changePage(props.pageCurrent - 1)} disabled={props.pageCurrent === 1} />
+      <Pagination.Prev style={{marginRight: '20px'}} key="pagPrev" onClick={() => props.changePage(props.pageCurrent - 1)} disabled={props.pageCurrent === 1} />
     );
   }
 
   function generateNumericItem(page) {
     return (
-      <Pagination.Item key={page} active={page === props.pageCurrent} onClick={() => props.changePage(page)}>
+      <Pagination.Item style={{marginRight: '5px'}} key={page} active={page === props.pageCurrent} onClick={() => props.changePage(page)}>
         {page}
       </Pagination.Item>
     );
@@ -29,7 +29,7 @@ export default (props) => {
 
   function generateNextItem(numPages) {
     return (
-      <Pagination.Next key="pagNext" onClick={() => props.changePage(props.totalItems + 1)} disabled={props.pageCurrent === numPages} />
+      <Pagination.Next style={{marginLeft: '20px'}} key="pagNext" onClick={() => props.changePage(props.pageCurrent + 1)} disabled={props.pageCurrent === numPages} />
     );
   }
 
@@ -59,7 +59,7 @@ export default (props) => {
   }
   return (
     <Container>
-      <Pagination>
+      <Pagination size="lg">
         {getPagination()}
       </Pagination>
     </Container>

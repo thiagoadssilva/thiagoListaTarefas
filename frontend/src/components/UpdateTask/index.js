@@ -51,17 +51,21 @@ export default (props) => {
   }, [loadTask, props]);
 
   async function handleUpdate(event) {
-    event.preventDefault();
-
-    try {
-      const taskUpdate = new TaskUpdateModel(null, task, false);
-      await axios.put(API_URL_UPDATE_TASK + props.taskUpdateId, taskUpdate);
-      setDisplayModal(false);
-      props.loadTask(true);
-      setTask('');
-    } catch (error) {
-      setDisplayModal(false);
+    if (task === '') {
       setDisplayModalErro(true);
+    } else {
+
+      event.preventDefault();
+      try {
+        const taskUpdate = new TaskUpdateModel(null, task, false);
+        await axios.put(API_URL_UPDATE_TASK + props.taskUpdateId, taskUpdate);
+        setDisplayModal(false);
+        props.loadTask(true);
+        setTask('');
+      } catch (error) {
+        setDisplayModal(false);
+        setDisplayModalErro(true);
+      }
     }
   }
 
@@ -70,7 +74,7 @@ export default (props) => {
 
       <img src={imageUpdate} style={{ width: '30px', height: '30px', cursor: 'pointer' }} onClick={setDisplayModal} />
 
-      <Modal show={displayModal} onHide={handleCloseModal}>
+      <Modal backdrop="static" show={displayModal} onHide={handleCloseModal} size="lg" centered aria-labelledby="contained-modal-title-vcenter">
         <Modal.Header closeButton>
           <Modal.Title>Atualizar Tarefa</Modal.Title>
         </Modal.Header>
@@ -78,7 +82,8 @@ export default (props) => {
         <Modal.Body>
           <Form>
             <Form.Group>
-              <Form.Control type="text" minLength="5" maxLength="100" required value={task} onChange={handleTextTask}>
+              <Form.Label>Informe o nome da tarefa:</Form.Label>
+              <Form.Control type="text" value={task} onChange={handleTextTask}>
               </Form.Control>
             </Form.Group>
           </Form>
@@ -97,16 +102,16 @@ export default (props) => {
         </Modal.Footer>
       </Modal>
 
-      <Modal show={displayModalErro} onHide={handleCloseModalErro}>
+      <Modal show={displayModalErro} onHide={handleCloseModalErro} centered aria-labelledby="contained-modal-title-vcenter">
         <Modal.Header closeButton>
-          <Modal.Title>Erro de conexão</Modal.Title>
+          <Modal.Title>Atenção</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          Erro ao cadastrar, por favor tente novamente!
+          Campo:  <b>informe o nome da tarefa é obrigatório.</b>
         </Modal.Body>
         <Modal.Footer>
           <Button variant="danger" onClick={handleCloseModalErro}>
-            Continuar
+            Fechar
           </Button>
         </Modal.Footer>
       </Modal>

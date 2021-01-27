@@ -38,7 +38,7 @@ export default (props) => {
       setDisplayModal(false);
       props.loadTask(true);
     } catch (error) {
-      setDisplayModalErro(true);
+      //setDisplayModalErro(true);
       setDisplayModal(false);
     }
   }
@@ -47,7 +47,7 @@ export default (props) => {
     <Container>
       <img src={iconeRemove} onClick={handleOpenModal} style={{ width: '30px', height: '30px', cursor: 'pointer' }} />
 
-      <Modal show={displayModal} onHide={handleCloseModal}>
+      <Modal show={displayModal} onHide={handleCloseModal} centered aria-labelledby="contained-modal-title-vcenter">
         <Modal.Header closeButton>
           <Modal.Title>Remover Tarefa</Modal.Title>
         </Modal.Header>
@@ -66,7 +66,7 @@ export default (props) => {
         </Modal.Footer>
       </Modal>
 
-      <Modal show={displayModalErro} onHide={handleCloseModalErro}>
+      <Modal show={displayModalErro} onHide={handleCloseModalErro} centered aria-labelledby="contained-modal-title-vcenter">
         <Modal.Header closeButton>
           <Modal.Title>Erro de conexão</Modal.Title>
         </Modal.Header>

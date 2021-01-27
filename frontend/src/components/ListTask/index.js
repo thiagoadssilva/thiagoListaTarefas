@@ -29,7 +29,7 @@ export default () => {
     const [totalItems, setTotalItem] = useState(0);
     const [pageCurrent, setPageCurrent] = useState(1);
 
-    const ITEM_FOR_PAGE = 5;
+    const ITEM_FOR_PAGE = 10;
     //- Contante que vai ter o link para listar todoas as tarefas através da api  
     const API_URL_LIST_TASK = "http://localhost:3002/gerenciador-tarefas";
 

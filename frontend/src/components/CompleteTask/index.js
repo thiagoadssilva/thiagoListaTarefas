@@ -44,12 +44,12 @@ export default (props) => {
 
       <img src={imageIconCheck} style={{width: '30px', height: '30px', cursor: 'pointer'} } onClick={handleOpenModal}/>
 
-      <Modal show={displayModal} onHide={handleCloseModal}>
+      <Modal show={displayModal} onHide={handleCloseModal} centered aria-labelledby="contained-modal-title-vcenter">
         <Modal.Header closeButton>
           <Modal.Title>Concluir Tarefa</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          Deseja Realmente concluir a seguinte tarefa?
+          Deseja realmente concluir a seguinte tarefa?
           <br/>
           <strong>{props.taskComplete.nome}</strong>
         </Modal.Body>
@@ -63,7 +63,7 @@ export default (props) => {
         </Modal.Footer>
       </Modal>
 
-      <Modal show={displayModalErro} onHide={handleCloseModalErro}>
+      <Modal show={displayModalErro} onHide={handleCloseModalErro} centered aria-labelledby="contained-modal-title-vcenter">
         <Modal.Header closeButton>
           <Modal.Title>Erro de conexão</Modal.Title>
         </Modal.Header>
