@@ -3,9 +3,6 @@ import CompleteTask from '../CompleteTask';
 import RemoveTask from '../RemoveTask';
 import UpdateTask from '../UpdateTask';
 
-import imageUpdate from '../../image/editar.png';
-import { A } from 'hookrouter';
-
 import {
   Container
 } from './styled';
