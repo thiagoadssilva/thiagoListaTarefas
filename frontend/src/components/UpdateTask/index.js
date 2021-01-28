@@ -15,7 +15,7 @@ export default (props) => {
   const [displayModalErro, setDisplayModalErro] = useState(false);
   const [task, setTask] = useState('');
   const [loadTask, setLoadTask] = useState(true);
-
+  const [displayModalCampoObrigatorio, setDisplayModalCampoObrigatorio] = useState(false);
 
   const API_URL_UPDATE_TASK = 'http://localhost:3002/gerenciador-tarefas/';
 
@@ -25,6 +25,11 @@ export default (props) => {
 
   function handleCloseModal() {
     setDisplayModal(false);
+  }
+
+ 
+  function handleCloseModalCampoObrigatorio() {
+    setDisplayModalCampoObrigatorio(false);
   }
 
   function handleCloseModalErro() {
@@ -52,7 +57,7 @@ export default (props) => {
 
   async function handleUpdate(event) {
     if (task === '') {
-      setDisplayModalErro(true);
+      setDisplayModalCampoObrigatorio(true);
     } else {
 
       event.preventDefault();
@@ -102,7 +107,7 @@ export default (props) => {
         </Modal.Footer>
       </Modal>
 
-      <Modal show={displayModalErro} onHide={handleCloseModalErro} centered aria-labelledby="contained-modal-title-vcenter">
+      <Modal show={displayModalCampoObrigatorio} onHide={handleCloseModalCampoObrigatorio} centered aria-labelledby="contained-modal-title-vcenter">
         <Modal.Header closeButton>
           <Modal.Title>Atenção</Modal.Title>
         </Modal.Header>
@@ -110,11 +115,26 @@ export default (props) => {
           Campo:  <b>informe o nome da tarefa é obrigatório.</b>
         </Modal.Body>
         <Modal.Footer>
+          <Button variant="danger" onClick={handleCloseModalCampoObrigatorio}>
+            Fechar
+          </Button>
+        </Modal.Footer>
+      </Modal>
+
+      <Modal show={displayModalErro} onHide={handleCloseModalErro} centered aria-labelledby="contained-modal-title-vcenter">
+        <Modal.Header closeButton>
+          <Modal.Title>Atenção</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          Erro ao tentar conectar com servidor, por favor tente novamente!
+        </Modal.Body>
+        <Modal.Footer>
           <Button variant="danger" onClick={handleCloseModalErro}>
             Fechar
           </Button>
         </Modal.Footer>
       </Modal>
+
     </Container>
   );
 }

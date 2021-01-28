@@ -14,12 +14,13 @@ export default (props) => {
 
   const [registerTask, setRegisterTask] = useState('');
   const [displayModal, setDisplayModal] = useState(false);
+  const [displayModalCampoObrigatorio, setDisplayModalCampoObrigatorio] = useState(false);
   const [displayModalErro, setDisplayModalErro] = useState(false);
 
   async function handleRegister(event) {
 
     if (registerTask === '') {
-      setDisplayModalErro(true);
+      setDisplayModalCampoObrigatorio(true);
     } else {
       event.preventDefault();
       if (event.currentTarget.checkValidity() === true) {
@@ -30,8 +31,9 @@ export default (props) => {
           props.loadTask(true);
           setRegisterTask('');
         } catch (error) {
-          // setDisplayModalErro(true);
-          // setDisplayModal(false);
+          setDisplayModalErro(true);
+          setDisplayModal(false);
+          setRegisterTask('');
         }
       }
     }
@@ -43,6 +45,10 @@ export default (props) => {
 
   function handleCloseModal() {
     setDisplayModal(false);
+  }
+
+  function handleCloseModalCampoObrigatorio() {
+    setDisplayModalCampoObrigatorio(false);
   }
 
   function handleCloseModalErro() {
@@ -89,12 +95,26 @@ export default (props) => {
         </Modal.Footer>
       </Modal>
 
-      <Modal show={displayModalErro} onHide={handleCloseModalErro} centered aria-labelledby="contained-modal-title-vcenter">
+      <Modal show={displayModalCampoObrigatorio} onHide={handleCloseModalCampoObrigatorio} centered aria-labelledby="contained-modal-title-vcenter">
         <Modal.Header closeButton>
           <Modal.Title>Atenção</Modal.Title>
         </Modal.Header>
         <Modal.Body>
           Campo:  <b>informe o nome da tarefa é obrigatório.</b>
+        </Modal.Body>
+        <Modal.Footer>
+          <Button variant="danger" onClick={handleCloseModalCampoObrigatorio}>
+            Fechar
+          </Button>
+        </Modal.Footer>
+      </Modal>
+
+      <Modal show={displayModalErro} onHide={handleCloseModalErro} centered aria-labelledby="contained-modal-title-vcenter">
+        <Modal.Header closeButton>
+          <Modal.Title>Atenção</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          Erro ao tentar conectar com servidor, por favor tente novamente!
         </Modal.Body>
         <Modal.Footer>
           <Button variant="danger" onClick={handleCloseModalErro}>
