@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Modal, Form, Button } from 'react-bootstrap';
-import axios from 'axios';
 import imageUpdate from '../../image/editar.png';
-
+import Api from '../../services/Api';
 import TaskUpdateModel from '../../models/task.model';
 
 import {
@@ -16,8 +15,6 @@ export default (props) => {
   const [task, setTask] = useState('');
   const [loadTask, setLoadTask] = useState(true);
   const [displayModalCampoObrigatorio, setDisplayModalCampoObrigatorio] = useState(false);
-
-  const API_URL_UPDATE_TASK = 'http://localhost:3002/gerenciador-tarefas/';
 
   function handleTextTask(event) {
     setTask(event.target.value);
@@ -41,7 +38,7 @@ export default (props) => {
     async function getTask() {
 
       try {
-        let { data } = await axios.get(API_URL_UPDATE_TASK + props.taskUpdateId);
+        let { data } = await Api.get("gerenciador-tarefas/" + props.taskUpdateId);
         setTask(data.nome);
       } catch (error) {
         setDisplayModal(false);
@@ -63,7 +60,7 @@ export default (props) => {
       event.preventDefault();
       try {
         const taskUpdate = new TaskUpdateModel(null, task, false);
-        await axios.put(API_URL_UPDATE_TASK + props.taskUpdateId, taskUpdate);
+        await Api.put("gerenciador-tarefas/" + props.taskUpdateId, taskUpdate);
         setDisplayModal(false);
         props.loadTask(true);
         setTask('');

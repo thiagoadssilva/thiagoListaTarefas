@@ -1,16 +1,14 @@
 import React, { useState } from 'react';
 import { Modal, Form, Button } from 'react-bootstrap';
 import Task from '../../models/task.model';
-import axios from 'axios';
 import iconPlus from '../../image/plus.png';
+import Api from '../../services/Api';
 
 import {
   Container
 } from './styled';
 
 export default (props) => {
-
-  const API_URL_REGISTER_TASK = "http://localhost:3002/gerenciador-tarefas";
 
   const [registerTask, setRegisterTask] = useState('');
   const [displayModal, setDisplayModal] = useState(false);
@@ -26,12 +24,12 @@ export default (props) => {
       if (event.currentTarget.checkValidity() === true) {
         try {
           const newTask = new Task(null, registerTask, false);
-          await axios.post(API_URL_REGISTER_TASK, newTask);
+          await Api.post("gerenciador-tarefas", newTask);
           handleCloseModal();
           props.loadTask(true);
           setRegisterTask('');
         } catch (error) {
-          setDisplayModalErro(true);
+          // setDisplayModalErro(true);
           setDisplayModal(false);
           setRegisterTask('');
         }

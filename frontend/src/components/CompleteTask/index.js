@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Modal, Button } from 'react-bootstrap';
-import axios from 'axios';
+import Api from '../../services/Api';
 import imageIconCheck from '../../image/concluir.svg';
 
 import {
@@ -10,8 +10,6 @@ import {
 export default (props) => {
   const [displayModal, setDisplayModal] = useState(false);
   const [displayModalErro, setDisplayModalErro] = useState(false);
-
-  const API_URL_CONCLUDE_TASK = 'http://localhost:3002/gerenciador-tarefas/';
 
   function handleOpenModal(event) {
     event.preventDefault();
@@ -30,7 +28,7 @@ export default (props) => {
     event.preventDefault();
 
     try {
-      let { tarefa } = await axios.put(API_URL_CONCLUDE_TASK + props.taskComplete.id + '/concluir');
+      let { tarefa } = await Api.put("gerenciador-tarefas/" + props.taskComplete.id + '/concluir');
       setDisplayModal(false);
       props.loadTask(true);
     } catch (error) {

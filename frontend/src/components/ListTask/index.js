@@ -4,11 +4,13 @@ import { faTimes } from '@fortawesome/free-solid-svg-icons';
 import { A } from 'hookrouter';
 import { Table, Form } from 'react-bootstrap';
 import ContainerGridItems from '../ContainerGridItems';
-import axios from 'axios';
+//import axios from 'axios';
+import Api from '../../services/Api';
 import iconSearch from '../../image/pesquiser.png';
 import RegisterTask from '../RegisterTask';
 import Ordanation from '../Ordination';
 import Pagination from '../Pagination';
+
 
 import {
     Container,
@@ -30,8 +32,6 @@ export default () => {
     const [pageCurrent, setPageCurrent] = useState(1);
 
     const ITEM_FOR_PAGE = 10;
-    //- Contante que vai ter o link para listar todoas as tarefas através da api  
-    const API_URL_LIST_TASK = "http://localhost:3002/gerenciador-tarefas";
 
     //- Useeffect que vai ao carregar aplicação vai fazer a comunicação com api e vai pegar todas as tarefas
     useEffect(() => {
@@ -46,8 +46,8 @@ export default () => {
             }
 
             try {
-                const param = `?pag=${pageCurrent}&filtro-tarefa=${filterTask}&ordem=${order}&itens-por-pagina=${ITEM_FOR_PAGE}`;
-                let { data } = await axios.get(API_URL_LIST_TASK + param);
+                const param = `gerenciador-tarefas?pag=${pageCurrent}&filtro-tarefa=${filterTask}&ordem=${order}&itens-por-pagina=${ITEM_FOR_PAGE}`;
+                let { data } = await Api.get(param);
                 setTotalItem(data.totalItens);
                 setTasks(data.tarefas);
             } catch (error) {

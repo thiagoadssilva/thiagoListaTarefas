@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import iconeRemove from '../../image/excluir.svg';
 import { Modal, Button } from 'react-bootstrap';
-import axios from 'axios';
+import Api from '../../services/Api';
 
 import {
   Container
@@ -11,8 +11,6 @@ export default (props) => {
 
   const [displayModal, setDisplayModal] = useState(false);
   const [displayModalErro, setDisplayModalErro] = useState(false);
-
-  const API_URL_TASK = "http://localhost:3002/gerenciador-tarefas/";
 
   let text = "Deseja realmente excluir a terafa?";
 
@@ -34,7 +32,7 @@ export default (props) => {
     event.preventDefault();
 
     try {
-      let {task} = await axios.delete(API_URL_TASK + props.taskRemove.id);
+      let {task} = await Api.delete("gerenciador-tarefas/" + props.taskRemove.id);
       setDisplayModal(false);
       props.loadTask(true);
     } catch (error) {
