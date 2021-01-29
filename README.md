@@ -7,7 +7,7 @@
 <hr>
 
 ## Protótipo criado com a plataforma 'FIGMA'
-  * https://www.figma.com/proto/jzQqLzzNjxZyLb8KmkKfKp/Untitled?node-id=1%3A20&frame-preset-name=Desktop&scaling=scale-down
+  * https://www.figma.com/proto/jzQqLzzNjxZyLb8KmkKfKp/Lista-de-tarefas?node-id=1%3A20&scaling=scale-down
 
 <hr/>
 
