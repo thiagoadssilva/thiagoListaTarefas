@@ -14,6 +14,9 @@
 ## Observações 
 - Todo parte das informações das tarefa está sendo feita através de uma api, porém essa api, não está usando banco de dados, apenas a memoria.
 
+## Projeto Publicado
+- http://listatarefa.tfcoder.com/
+
 <hr/>
 
 ## <b>Tela de Inicio</b> 
